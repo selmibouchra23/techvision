@@ -31,31 +31,6 @@ function AdminNotifications() {
     const [selectedRequest, setSelectedRequest] = useState(null)
     const toast = useToast();
 
-   /* const showSystemNotification = notification => {
-      if (!('Notification' in window)) {
-        console.log('Browser does not support notifications.')
-        return
-      }
-  
-      if (Notification.permission === 'granted') {
-        const systemNotification = new Notification('New Notification', {
-          body: notification.message,
-          // icon: "/logo192.png", // Replace with your site logo
-        })
-  
-        // ✅ Redirect to Notifications.jsx when clicked
-        systemNotification.onclick = () => {
-          window.open('/Notifications', '_blank') // Opens in a new tab
-        }
-      } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            showSystemNotification(notification)
-          }
-        })
-      }
-    }*/
-
   useEffect(() => {
     const userId = auth.currentUser?.uid;
     if (!userId) return;
@@ -87,86 +62,14 @@ function AdminNotifications() {
 
     return () => unsubscribe();
   }, []);
-  // Fetch notifications from Firestore (Modify this based on your actual structure)
- /* useEffect(() => {
-    const userId = auth.currentUser?.uid
-        if (!userId) return
-    const fetchNotifications = async () => {
-      try {
-        const notificationsRef = collection(db, 'Admins', userId, 'Notifications'); // Adjust collection path
-        const snapshot = await getDoc(notificationsRef);
-        const notifs = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-         // ✅ Only play sound & show system notification if it's a NEW notification (not just a read update)
-         const latestNotification =
-         notifs.length > 0 ? notifs[0] : null // Most recent notification
 
-       // ✅ Play sound and show system notification for new notifications
-       if (
-         latestNotification &&
-         notifs.length > notifications.length && // Only if a new one is added
-         !latestNotification.read // Only if it's unread
-       ) {
-         playNotificationSound()
-         showSystemNotification(latestNotification)
-        setNotifications(notifs);
-      } 
-    }
-      catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
-    };
-
-    fetchNotifications();
-  }, []);
-
-  // Function to fetch user info and request details
-  const fetchRequestDetails = async (notif) => {
-    if (!notif) return;
-
-    try {
-      // Fetch User Information
-      const userRef = doc(db, "Users", notif.userId);
-      const userSnap = await getDoc(userRef);
-      const userData = userSnap.exists() ? userSnap.data() : null;
-
-      // Fetch Request Information Based on Type
-      let requestRef;
-      if (notif.requestType === "development") {
-        requestRef = doc(db, 'Users', notif.userId, "RequestsDevelopment", notif.requestId);
-      } else {
-        requestRef = doc(db, 'Users', notif.userId, "requestsRepair", notif.requestId);
-      }
-
-      const requestSnap = await getDoc(requestRef);
-      const requestData = requestSnap.exists() ? requestSnap.data() : null;
-
-      if (userData && requestData) {
-        setSelectedRequest({
-          ...requestData,
-          type: notif.requestType,
-          projectName: requestData.projectDetails?.projectName,
-          technologiesUsed: requestData.projectDetails?.technologiesUsed,
-          deviceType: requestData.deviceDetails?.deviceType,
-          damageTitle: requestData.issueDescription?.damageTitle,
-          userName: `${userData.firstName} ${userData.lastName}`, // Merge user name
-        });
-      } else {
-        console.error("User or Request not found");
-      }
-    } catch (error) {
-      console.error("Error fetching request details:", error);
-    }
-  };*/
-   // ✅ Function to play notification sound
+   //  Function to play notification sound
     const playNotificationSound = () => {
       const audio = new Audio(notificationSound)
       audio.play().catch(error => console.log('Audio play blocked:', error))
     }
 
-     // ✅ When an admin clicks a notification, fetch full request details
+     //  When an admin clicks a notification, fetch full request details
   const handleNotificationClick = async notification => {
     console.log('Notification Data:', notification)
     // Check if notification contains required fields
@@ -256,7 +159,7 @@ function AdminNotifications() {
       ...subcollections, 
     });
 
-      // ✅ Mark notification as read
+      // Mark notification as read
       const notificationDoc = doc(
         db, 'Admins' , auth.currentUser.uid ,
         'Notifications',
@@ -386,17 +289,6 @@ function AdminNotifications() {
       }
     }
 
-    /*  const updateRequestStatus = async (userId, requestId, status, requestType) => {
-        try {
-          const requestPath = requestType === "development" ? "RequestsDevelopment" : "requestsRepair";
-          const requestRef = doc(db, 'Users', userId, requestPath, requestId);
-          await requestRef.update({ status, price });
-          setModalOpen(false);
-        } catch (error) {
-          console.error("Error updating request status:", error);
-        }
-      };*/
-
   return (
     <Box p={4}>
             <FormControl
@@ -521,7 +413,7 @@ function AdminNotifications() {
                                              </Box>
                                              </Box>
                                             {/* Accept/Reject Buttons */}
-                                            <Box mt={4}>
+                                           {/* <Box mt={4}>
                                               {selectedRequest?.status === 'pending' && (
                                                 
                                                   <Box mt={4}>
@@ -595,7 +487,7 @@ function AdminNotifications() {
                                                   </Box>
                                                 
                                               )}
-                                            </Box>
+                                            </Box>*/}
                                         
                                            </ModalBody>
                                                       </ModalContent>

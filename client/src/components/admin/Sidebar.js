@@ -29,6 +29,8 @@ const Sidebar = () => {
     const [previousUnread, setPreviousUnread] = useState(0);
 
     const showSystemNotification = (notification) => {
+          console.log("📢 Triggering system notification", notification); // 👈
+
         if (!('Notification' in window)) {
           console.log('Browser does not support notifications.')
           return
@@ -52,6 +54,14 @@ const Sidebar = () => {
           })
         }
       }
+
+      useEffect(() => {
+  if ("Notification" in window && Notification.permission !== "granted") {
+    Notification.requestPermission().then((permission) => {
+      console.log("Notification permission:", permission); // ← tu verras 'granted' ou 'denied'
+    });
+  }
+}, []);
 
      //  If user is an admin and visits "/", redirect him to "/dashboard"
      useEffect(() => {
@@ -78,9 +88,9 @@ const Sidebar = () => {
 
     // Fetch Unread Notifications Count
     useEffect(() => {
-        //const userId = auth.currentUser?.uid;
+        // const userId = auth.currentUser?.uid;
         // mzid had ster
-        const unsubscribeAuth = onAuthStateChanged(auth, (userId) => {
+       const unsubscribeAuth = onAuthStateChanged(auth, (userId) => {
         if (!userId) return;
 
         const notificationsRef = collection(db, "Admins", userId.uid, "Notifications");
@@ -107,7 +117,7 @@ const Sidebar = () => {
         });
 
         return () => unsubscribe();
-          });
+         });
           return () => unsubscribeAuth();
     }, [previousUnread]);
 

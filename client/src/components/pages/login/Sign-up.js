@@ -18,6 +18,8 @@ import { setDoc, doc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { position } from '@chakra-ui/react';
 
+import { Link } from 'react-router-dom';
+
 export default function SignUp() {
 
   const { pathname } = useLocation();
