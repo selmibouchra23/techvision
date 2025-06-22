@@ -57,7 +57,9 @@ video {
   @media screen and (max-width: 768px) {
     .TechVision-container > h1 {
       font-size: 50px;
-      margin-top: -180px;
+      text-align: center;
+     /* margin-top: -180px;*/
+      margin-top: 50px;
       margin-left: 50px;
     }
   
