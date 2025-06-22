@@ -255,7 +255,10 @@ export default function SignUp() {
 
           <p className='text-center mt-6 text-neutral-500'>
             Already have an account? 
-            <a href='/Log-in' className='text-blue cursor-pointer'> Log In</a>
+          {/*  <a href='/Log-in' className='text-blue cursor-pointer'> Log In</a>*/}
+             <Link to='/Log-in' className=' text-blue cursor-pointer'   >
+                          Log In
+            </Link>
           </p>
 
         </form>
