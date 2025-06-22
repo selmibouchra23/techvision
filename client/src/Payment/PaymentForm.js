@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import './PaymentForm.css'; // Custom styles here
 import { useLocation } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 function PaymentForm() {
+  const navigate = useNavigate();
+  
   const stripe = useStripe();
   const elements = useElements();
   
@@ -81,7 +83,8 @@ function PaymentForm() {
 
       if (data.success) {
         setMessage('✅ Payment successful!');
-        window.location.href = '/completion'; // Redirect to completion page
+        navigate('/completion');
+      //  window.location.href = '/completion'; // Redirect to completion page
       } else {
         setMessage(`❌ ${data.error}`);
       }

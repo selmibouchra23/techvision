@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d2f92485.css",
+    "main.js": "/static/js/main.3d5598ec.js",
+    "static/media/16.jpg": "/static/media/16.f2c7f66974ec5f793dad.jpg",
+    "static/media/notification.mp3": "/static/media/notification.22abafefbe46f2ec990c.mp3",
+    "static/media/cover.jpg": "/static/media/cover.92fb4e24bc668f328c12.jpg",
+    "static/media/15.png": "/static/media/15.ad322a6785b3f6fa95b4.png",
+    "static/media/4.jpg": "/static/media/4.4c2d16c0b91bd490649b.jpg",
+    "static/media/8.jpg": "/static/media/8.8ed8479876039bb88210.jpg",
+    "static/media/5.jpg": "/static/media/5.cffdaf0b5e2d467c202c.jpg",
+    "static/media/102.jpg": "/static/media/102.49072f310eb17b345aaa.jpg",
+    "static/media/100.jpg": "/static/media/100.1aa374919629cb2b15b5.jpg",
+    "static/media/18.jpg": "/static/media/18.d757987bae24cbb3451a.jpg",
+    "static/media/projector.png": "/static/media/projector.f011c450e184b981b6f7.png",
+    "static/media/multimedia.png": "/static/media/multimedia.8fcacddbd60739565093.png",
+    "static/media/gaming.png": "/static/media/gaming.18a434b478d851ba68ef.png",
+    "index.html": "/index.html",
+    "main.d2f92485.css.map": "/static/css/main.d2f92485.css.map",
+    "main.3d5598ec.js.map": "/static/js/main.3d5598ec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d2f92485.css",
+    "static/js/main.3d5598ec.js"
+  ]
+}
