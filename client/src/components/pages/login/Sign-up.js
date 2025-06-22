@@ -186,11 +186,11 @@ export default function SignUp() {
           <p className='text-black opacity-60 mt-3'>Join us today! Sign up with:</p>
 
           <div className='oath-btns flex justify-between gap-x-5 mt-2'>
-            <IconButton text='Google' iconColor='#fff' onClick={googleLogin}>
+            <IconButton text='Google' iconColor='#fff' onClick={googleLogin} type= "button">
               <FcGoogle />
             </IconButton>
 
-            <IconButton text='Facebook' iconColor='#426782'>
+            <IconButton text='Facebook' iconColor='#426782' type= "button" >
               <FaFacebook />
             </IconButton>
           </div>

@@ -254,13 +254,13 @@ export default function LogIn() {
             <p className='text-blac opacity-60 mt-3'>Welcome back! Select method to log in:</p>
 
             <div className='oath-btns flex justify-between gap-x-5 mt-8'>
-              <IconButton text='Google' iconColor='#fff' onClick={googleLogin}>
+              <IconButton text='Google' iconColor='#fff' onClick={googleLogin} type= "button">
                 <FcGoogle />
               </IconButton>
 
 
 
-              <IconButton text='Facebook' iconColor='#426782' onClick={facebookLogin}> 
+              <IconButton text='Facebook' iconColor='#426782' onClick={facebookLogin} type = "button"> 
                 <FaFacebook />
               </IconButton>
             </div>
