@@ -44,7 +44,9 @@ function Navbar() {
         }
       }
       useEffect(() => {
-        const user = auth.currentUser;
+       // const user = auth.currentUser;
+
+         const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
         if (!user) return;
       
         const notificationsRef = collection(db, "Users", user.uid, "Notifications");
@@ -68,6 +70,8 @@ function Navbar() {
         });
       
         return () => unsubscribe();
+          });
+          return () => unsubscribeAuth();
       }, [previousUnread]);
 
     useEffect(() => {

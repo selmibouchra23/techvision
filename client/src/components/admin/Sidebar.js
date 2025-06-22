@@ -19,6 +19,7 @@ import {
     FiUserCheck
 } from "react-icons/fi";
 import notificationSound from '../../assets/notification.mp3'
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
@@ -77,10 +78,12 @@ const Sidebar = () => {
 
     // Fetch Unread Notifications Count
     useEffect(() => {
-        const userId = auth.currentUser?.uid;
+        //const userId = auth.currentUser?.uid;
+        // mzid had ster
+        const unsubscribeAuth = onAuthStateChanged(auth, (userId) => {
         if (!userId) return;
 
-        const notificationsRef = collection(db, "Admins", userId, "Notifications");
+        const notificationsRef = collection(db, "Admins", userId.uid, "Notifications");
         const q = query(notificationsRef, where("read", "==", false)); // Only unread notifications
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -104,6 +107,8 @@ const Sidebar = () => {
         });
 
         return () => unsubscribe();
+          });
+          return () => unsubscribeAuth();
     }, [previousUnread]);
 
     // Logout Function

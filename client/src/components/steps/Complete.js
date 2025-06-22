@@ -167,7 +167,7 @@ export default function Final() {
             read: false,
             timestamp: new Date().toISOString(),
           })
-        })
+        }) 
 
         console.log('Notification sent to all admins in Firestore.')
       } else {
