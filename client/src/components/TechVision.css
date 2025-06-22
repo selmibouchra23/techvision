@@ -45,8 +45,8 @@ video {
   .fa-play-circle {
     margin-left: 4px;
   }
-  
-  @media screen and (max-width: 960px) {
+  /* Responsive design pour mobile */
+  @media screen and (max-width: 766px) {
     .TechVision-container > h1 {
       font-size: 70px;
       margin-top: -150px;
