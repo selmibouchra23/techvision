@@ -29,7 +29,7 @@ const Sidebar = () => {
     const [previousUnread, setPreviousUnread] = useState(0);
 
     const showSystemNotification = (notification) => {
-          console.log("📢 Triggering system notification", notification); // 👈
+        //  console.log("📢 Triggering system notification", notification); // 👈
 
         if (!('Notification' in window)) {
           console.log('Browser does not support notifications.')

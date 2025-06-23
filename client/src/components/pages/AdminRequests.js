@@ -38,18 +38,28 @@ function AdminRequests() {
   useEffect(() => {
     const fetchRequests = async () => {
       setLoading(true)
-      const db = getDatabase()
-      const usersRef = ref(db, 'Users')
+      // const db = getDatabase()
+      // const usersRef = ref(db, 'Users')
+
+        const userRef = doc(db, "Users", userId);
+  const userSnap = await getDoc(userRef);
 
       try {
-        const snapshot = await get(usersRef)
-        if (!snapshot.exists()) {
+       // const snapshot = await get(usersRef)
+        // if (!snapshot.exists()) {
+        //   console.error('No users found.')
+        //   setLoading(false)
+        //   return
+        // }
+        if (!userSnap.exists()) {
           console.error('No users found.')
           setLoading(false)
           return
         }
 
-        const usersData = snapshot.val()
+        //const usersData = snapshot.val()
+        const usersData = []
+        const userData = []
         let allDevelopmentRequests = []
         let allRepairRequests = []
 
@@ -165,6 +175,13 @@ function AdminRequests() {
             })
           }
         })
+           userSnap.forEach((doc) => {
+        userData.push({
+          id: doc.id,
+          email: userData.email,
+          ...doc.data(),
+        });
+      });
 
         //  Sort by timestamp (newest first)
       /*  allDevelopmentRequests.sort((a, b) =>
@@ -1044,26 +1061,7 @@ function AdminRequests() {
                       </>
                     )}
 
-                    {/*  <Button 
-            colorScheme="green" 
-            mr={2} 
-            onClick={() => {
-              updateRequestStatus(selectedRequest.userId, selectedRequest.id, "accepted", selectedRequest.type);
-              onClose(); // Close modal after action
-            }}
-          >
-            Accept
-          </Button>
-
-          <Button 
-            colorScheme="red" 
-            onClick={() => {
-              updateRequestStatus(selectedRequest.userId, selectedRequest.id, "rejected", selectedRequest.type);
-              onClose(); // Close modal after action
-            }}
-          >
-            Reject
-          </Button>*/}
+                   
                   </Box>
                 )}
               </>
