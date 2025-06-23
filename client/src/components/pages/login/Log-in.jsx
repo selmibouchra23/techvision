@@ -253,7 +253,7 @@ export default function LogIn() {
             <h1 className='text-3xl font-semibold mt-6 opacity-90'>Log in to your Account</h1>
             <p className='text-blac opacity-60 mt-3'>Welcome back! Select method to log in:</p>
 
-          {/*}  <div className='oath-btns flex justify-between gap-x-5 mt-8'>
+            <div className='oath-btns flex justify-between gap-x-5 mt-8'>
               <IconButton text='Google' iconColor='#fff' onClick={googleLogin} type= "button">
                 <FcGoogle />
               </IconButton>
@@ -270,7 +270,7 @@ export default function LogIn() {
 
             <span className='block text-center opacity-70 mt-6 mb-10 text-gray-800'>
               or continue with email
-            </span>*/}
+            </span>
 
 
 
