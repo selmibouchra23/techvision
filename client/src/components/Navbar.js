@@ -28,7 +28,7 @@ function Navbar() {
         if (Notification.permission === 'granted') {
           const systemNotification = new Notification('New Notification', {
             body: notification.message,
-            // icon: "/logo192.png", // Replace with your site logo
+            icon: "/logo1.png", 
           })
     
           //  Redirect to Notifications.jsx when clicked
