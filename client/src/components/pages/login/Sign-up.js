@@ -187,7 +187,7 @@ export default function SignUp() {
           <h1 className='text-3xl font-semibold mt-6 opacity-90'>Create Your Account</h1>
           <p className='text-black opacity-60 mt-3'>Join us today! Sign up with:</p>
 
-          <div className='oath-btns flex justify-between gap-x-5 mt-2'>
+        {/*}  <div className='oath-btns flex justify-between gap-x-5 mt-2'>
             <IconButton text='Google' iconColor='#fff' onClick={googleLogin} type= "button">
               <FcGoogle />
             </IconButton>
@@ -199,7 +199,7 @@ export default function SignUp() {
 
           <span className='block text-center opacity-70 mt-5 mb-10 text-gray-800'>
             or sign up with email
-          </span>
+          </span>*/}
 
           {error && <p className="text-red-500 text-center mb-3">{error}</p>}
 
