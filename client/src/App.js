@@ -62,6 +62,7 @@ import AdminDashboardPage from './components/admin/dash/AdminDashboardPage'
 // import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+import PaymentPage2 from './components/pages/cart/paymentFirstPage2';
 function App() {
   const [isAdmin, setIsAdmin] = useState(null);
   const [loading, setLoading] = useState(true); // To prevent flickering on first load
@@ -196,6 +197,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/allproduct" element={<AllProduct />} />
         <Route path="/category/:categoryname" element={<CategoryPage />} />
+
+        <Route path="PaymentPage2" element={<PaymentPage2 />} />
 
 
  

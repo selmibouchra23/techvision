@@ -17,6 +17,13 @@
     height: 80px;
     max-width: 1500px;
   }
+  .navbar-logo-img {
+  height: 35px; /* Ajuste selon ton design */
+  width: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
   
   .navbar-logo {
     color: #fff;

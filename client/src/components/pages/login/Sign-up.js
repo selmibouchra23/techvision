@@ -17,7 +17,7 @@ import { auth, db } from '../../firebase';
 import { setDoc, doc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { position } from '@chakra-ui/react';
-
+import '../..//Navbar.css';
 import { Link } from 'react-router-dom';
 
 export default function SignUp() {
@@ -181,7 +181,9 @@ export default function SignUp() {
         <form onSubmit={handleRegister} className='form-section w-full lg:w-1/2 px-8 lg:px-24 py-16 order-2 lg:order-1'>
 
           <div className='logo cursor-pointer text-2xl flex items-center'>
-            TchVision <i className="fab fa-slack text-gray-700 text-2xl" />
+            TchVision
+             <img src="/logo1.png" alt="TechVision Logo" className="navbar-logo-img" />
+            {/* <i className="fab fa-slack text-gray-700 text-2xl" /> */}
           </div>
 
           <h1 className='text-3xl font-semibold mt-6 opacity-90'>Create Your Account</h1>

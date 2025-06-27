@@ -81,7 +81,7 @@ function Notifications() {
     }, []);
 
 
-  // ✅ Function to play notification sound
+  //  Function to play notification sound
   const playNotificationSound = () => {
     const audio = new Audio(notificationSound)
     audio.play().catch(error => console.log('Audio play blocked:', error))
@@ -372,6 +372,8 @@ function Notifications() {
                   <Button
                 colorScheme="teal"
                 onClick={handlePaymentRedirect}
+                
+                
                 mt={4}
                 width="100%"
               >

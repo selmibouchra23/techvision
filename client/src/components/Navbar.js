@@ -134,7 +134,9 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-                    TchVision <i className="fab fa-slack"/>  {/* % lodo ta3na */}   
+                    TechVision
+                     <img src="/logo22.png" alt="TechVision Logo" className="navbar-logo-img" />
+                   {/*  <i className="fab fa-slack"/>  {/* % lodo ta3na */}   
                 </Link>
 
                 <div className='menu-icon' onClick={handleClick}>

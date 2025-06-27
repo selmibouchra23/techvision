@@ -18,7 +18,7 @@ function PaymentForm() {
     pays: '', });
 
 //  const [amount, setAmount] = useState(state?.price || ''); // Get price from notification if available
-  const amount = localStorage.getItem('price');
+  const amount = location.state?.price || localStorage.getItem('price');
 
  /* useEffect(() => {
     // If there's no price, you can set an initial value for the user to enter.

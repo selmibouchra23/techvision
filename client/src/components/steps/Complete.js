@@ -159,7 +159,7 @@ export default function Final() {
 
           // Add notification for this admin
           await addDoc(adminNotificationsRef, {
-            message: `New development request from user ${userFullName}`,
+            message: `New development request from  ${userFullName}`,
             type: 'new_request',
             userId: userId, // Include userId
             requestId: requestId, // Include requestId

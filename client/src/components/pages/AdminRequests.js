@@ -35,168 +35,284 @@ function AdminRequests() {
   const [price, setPrice] = useState('')
   const [showPriceInput, setShowPriceInput] = useState(null)
 
-  useEffect(() => {
-    const fetchRequests = async () => {
-      setLoading(true)
-      const db = getDatabase()
-      const usersRef = ref(db, 'Users')
+  // useEffect(() => {
+  //   const fetchRequests = async () => {
+  //     setLoading(true)
+  //     const db = getDatabase()
+  //     const usersRef = ref(db, 'Users')
 
-      try {
-        const snapshot = await get(usersRef)
-        if (!snapshot.exists()) {
-          console.error('No users found.')
-          setLoading(false)
-          return
-        }
+  //     try {
+  //       const snapshot = await get(usersRef)
+  //       if (!snapshot.exists()) {
+  //         console.error('No users found.')
+  //         setLoading(false)
+  //         return
+  //       }
 
-        const usersData = snapshot.val()
-        let allDevelopmentRequests = []
-        let allRepairRequests = []
+  //       const usersData = snapshot.val()
+  //       let allDevelopmentRequests = []
+  //       let allRepairRequests = []
 
-        //  Loop through users to get their requests
-        Object.keys(usersData).forEach(userId => {
-          const user = usersData[userId]
+  //       //  Loop through users to get their requests
+  //       Object.keys(usersData).forEach(userId => {
+  //         const user = usersData[userId]
 
-          // Extract user details
-          const userEmail = user.email || 'Unknown Email'
-          const firstName = user.firstName || 'Unknown'
-          const lastName = user.lastName || 'Unknown'
+  //         // Extract user details 
+  //         const userEmail = user.email || 'Unknown Email'
+  //         const firstName = user.firstName || 'Unknown'
+  //         const lastName = user.lastName || 'Unknown'
 
-          //  Fetch Development Requests
-          if (user.RequestsDevelopment) {
-            Object.keys(user.RequestsDevelopment).forEach(reqId => {
-              const request = user.RequestsDevelopment[reqId]
+  //         //  Fetch Development Requests
+  //         if (user.RequestsDevelopment) {
+  //           Object.keys(user.RequestsDevelopment).forEach(reqId => {
+  //             const request = user.RequestsDevelopment[reqId]
 
-              allDevelopmentRequests.push({
-                id: reqId,
-                userId,
-                userEmail,
-                userFullName: `${firstName} ${lastName}`,
-                status: request.status || 'pending',
-                //timestamp: request.timestamp   || "Unknown",
-                rawTimestamp: request.timestamp
-                ? new Date(request.timestamp).getTime()
-                : 0,
-                timestamp: request.timestamp
-                  ? new Date(request.timestamp).toLocaleString()
-                  : '0',
-                //personalInfo: request.PersonalInformations || {},
-                fullname: request.personalInfo?.fullname || 'Unknown',
-                fullnameInArabic:
-                  request.personalInfo?.fullnameInArabic || 'Unknown',
-                dateOfBirth: request.personalInfo?.dateOfBirth || 'Unknown',
-                placeOfBirth: request.personalInfo?.placeOfBirth || 'Unknown',
-                nationalId: request.personalInfo?.nationalId || 'Unknown',
-                phoneNumber: request.personalInfo?.phoneNumber || 'Unknown',
-                //academicstatus: request.academicInfo,status || {},
-                statuss: request.academicInfo?.status || 'Unknown',
-                institution: request.academicInfo?.institution || 'Unknown',
-                registrationNumber:
-                  request.academicInfo?.registrationNumber || 'Unknown',
-                faculty: request.academicInfo?.faculty || 'Unknown',
-                department: request.academicInfo?.department || 'Unknown',
-                fieldOfStudy: request.academicInfo?.fieldOfStudy || 'Unknown',
-                specialty: request.academicInfo?.specialty || 'Unknown',
-                companyName: request.academicInfo?.companyName || 'Unknown',
-                businessType: request.academicInfo?.businessType || 'Unknown',
-                companyAddress:
-                  request.academicInfo?.companyAddress || 'Unknown',
-                otherDetail: request.academicInfo?.otherDetail || 'Unknown',
-                //ne7tajha fe condition
-                projectDetails: request.projectDetails || {},
-                projectName: request.projectDetails?.projectName || 'Unknown',
-                projectDescription:
-                  request.projectDetails?.projectDescription || 'Unknown',
-                technologiesUsed:
-                  request.projectDetails?.technologiesUsed || 'Unknown',
-                startDate: request.projectDetails?.startDate || 'Unknown',
-                endDate: request.projectDetails?.endDate || 'Unknown',
-                type: 'development',
-              })
-            })
-          }
+  //             allDevelopmentRequests.push({
+  //               id: reqId,
+  //               userId,
+  //               userEmail,
+  //               userFullName: `${firstName} ${lastName}`,
+  //               status: request.status || 'pending',
+  //               //timestamp: request.timestamp   || "Unknown",
+  //               rawTimestamp: request.timestamp
+  //               ? new Date(request.timestamp).getTime()
+  //               : 0,
+  //               timestamp: request.timestamp
+  //                 ? new Date(request.timestamp).toLocaleString()
+  //                 : '0',
+  //               //personalInfo: request.PersonalInformations || {},
+  //               fullname: request.personalInfo?.fullname || 'Unknown',
+  //               fullnameInArabic:
+  //                 request.personalInfo?.fullnameInArabic || 'Unknown',
+  //               dateOfBirth: request.personalInfo?.dateOfBirth || 'Unknown',
+  //               placeOfBirth: request.personalInfo?.placeOfBirth || 'Unknown',
+  //               nationalId: request.personalInfo?.nationalId || 'Unknown',
+  //               phoneNumber: request.personalInfo?.phoneNumber || 'Unknown',
+  //               //academicstatus: request.academicInfo,status || {},
+  //               statuss: request.academicInfo?.status || 'Unknown',
+  //               institution: request.academicInfo?.institution || 'Unknown',
+  //               registrationNumber:
+  //                 request.academicInfo?.registrationNumber || 'Unknown',
+  //               faculty: request.academicInfo?.faculty || 'Unknown',
+  //               department: request.academicInfo?.department || 'Unknown',
+  //               fieldOfStudy: request.academicInfo?.fieldOfStudy || 'Unknown',
+  //               specialty: request.academicInfo?.specialty || 'Unknown',
+  //               companyName: request.academicInfo?.companyName || 'Unknown',
+  //               businessType: request.academicInfo?.businessType || 'Unknown',
+  //               companyAddress:
+  //                 request.academicInfo?.companyAddress || 'Unknown',
+  //               otherDetail: request.academicInfo?.otherDetail || 'Unknown',
+  //               //ne7tajha fe condition
+  //               projectDetails: request.projectDetails || {},
+  //               projectName: request.projectDetails?.projectName || 'Unknown',
+  //               projectDescription:
+  //                 request.projectDetails?.projectDescription || 'Unknown',
+  //               technologiesUsed:
+  //                 request.projectDetails?.technologiesUsed || 'Unknown',
+  //               startDate: request.projectDetails?.startDate || 'Unknown',
+  //               endDate: request.projectDetails?.endDate || 'Unknown',
+  //               type: 'development',
+  //             })
+  //           })
+  //         }
 
-          //  Fetch Repair Requests
-          if (user.requestsRepair) {
-            Object.keys(user.requestsRepair).forEach(reqId => {
-              const request = user.requestsRepair[reqId]
+  //         //  Fetch Repair Requests
+  //         if (user.requestsRepair) {
+  //           Object.keys(user.requestsRepair).forEach(reqId => {
+  //             const request = user.requestsRepair[reqId]
 
-              allRepairRequests.push({
-                id: reqId,
-                userId,
-                userEmail,
-                userFullName: `${firstName} ${lastName}`,
-                status: request.status || 'pending',
-                //timestamp: request.timestamp || "Unknown",
-                rawTimestamp: request.timestamp
-                ? new Date(request.timestamp).getTime()
-                : 0,
-                 timestamp: request.timestamp
-                  ? new Date(request.timestamp).toLocaleString()
-                  : '0',
-                //personalInfoRepair: request.personalinforepair || {},
-                fullname: request.personalInfoRepair?.fullname || 'Unknown',
-                fullnameInArabic:
-                  request.personalInfoRepair?.fullnameInArabic || 'Unknown',
-                dateOfBirth:
-                  request.personalInfoRepair?.dateOfBirth || 'Unknown',
-                placeOfBirth:
-                  request.personalInfoRepair?.placeOfBirth || 'Unknown',
-                nationalId: request.personalInfoRepair?.nationalId || 'Unknown',
-                phoneNumber:
-                  request.personalInfoRepair?.phoneNumber || 'Unknown',
-                companyName:
-                  request.personalInfoRepair?.companyName || 'Unknown',
-                companyAddress:
-                  request.personalInfoRepair?.companyAddress || 'Unknown',
-                deviceDetails: request.deviceDetails || {},
-                deviceType: request.deviceDetails?.deviceType || 'Unknown',
-                brand: request.deviceDetails?.brand || 'Unknown',
-                modelNumber: request.deviceDetails?.modelNumber || 'Unknown',
-                serialNumber: request.deviceDetails?.serialNumber || 'Unknown',
-                purchaseDate: request.deviceDetails?.purchaseDate || 'Unknown',
-                warrantyStatus: request.deviceDetails?.status || 'Unknown',
-                //issueDescription: request.issueDescription || {},
-                damageTitle: request.issueDescription?.damageTitle || 'Unknown',
-                damageDescription:
-                  request.issueDescription?.damageDescription || 'Unknown',
-                type: 'repair',
-              })
-            })
-          }
-        })
+  //             allRepairRequests.push({
+  //               id: reqId,
+  //               userId,
+  //               userEmail,
+  //               userFullName: `${firstName} ${lastName}`,
+  //               status: request.status || 'pending',
+  //               //timestamp: request.timestamp || "Unknown",
+  //               rawTimestamp: request.timestamp
+  //               ? new Date(request.timestamp).getTime()
+  //               : 0,
+  //                timestamp: request.timestamp
+  //                 ? new Date(request.timestamp).toLocaleString()
+  //                 : '0',
+  //               //personalInfoRepair: request.personalinforepair || {},
+  //               fullname: request.personalInfoRepair?.fullname || 'Unknown',
+  //               fullnameInArabic:
+  //                 request.personalInfoRepair?.fullnameInArabic || 'Unknown',
+  //               dateOfBirth:
+  //                 request.personalInfoRepair?.dateOfBirth || 'Unknown',
+  //               placeOfBirth:
+  //                 request.personalInfoRepair?.placeOfBirth || 'Unknown',
+  //               nationalId: request.personalInfoRepair?.nationalId || 'Unknown',
+  //               phoneNumber:
+  //                 request.personalInfoRepair?.phoneNumber || 'Unknown',
+  //               companyName:
+  //                 request.personalInfoRepair?.companyName || 'Unknown',
+  //               companyAddress:
+  //                 request.personalInfoRepair?.companyAddress || 'Unknown',
+  //               deviceDetails: request.deviceDetails || {},
+  //               deviceType: request.deviceDetails?.deviceType || 'Unknown',
+  //               brand: request.deviceDetails?.brand || 'Unknown',
+  //               modelNumber: request.deviceDetails?.modelNumber || 'Unknown',
+  //               serialNumber: request.deviceDetails?.serialNumber || 'Unknown',
+  //               purchaseDate: request.deviceDetails?.purchaseDate || 'Unknown',
+  //               warrantyStatus: request.deviceDetails?.status || 'Unknown',
+  //               //issueDescription: request.issueDescription || {},
+  //               damageTitle: request.issueDescription?.damageTitle || 'Unknown',
+  //               damageDescription:
+  //                 request.issueDescription?.damageDescription || 'Unknown',
+  //               type: 'repair',
+  //             })
+  //           })
+  //         }
+  //       })
 
-        //  Sort by timestamp (newest first)
-      /*  allDevelopmentRequests.sort((a, b) =>
-          new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime() ? 1 : -1
-        )
-        allRepairRequests.sort((a, b) =>
-            new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime() ? 1 : -1
-      )*/
+  //       //  Sort by timestamp (newest first)
+  //     /*  allDevelopmentRequests.sort((a, b) =>
+  //         new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime() ? 1 : -1
+  //       )
+  //       allRepairRequests.sort((a, b) =>
+  //           new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime() ? 1 : -1
+  //     )*/
 
         
-        allDevelopmentRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
-        allRepairRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
+  //       allDevelopmentRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
+  //       allRepairRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
 
-      /*  allDevelopmentRequests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        allRepairRequests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        */
+  //     /*  allDevelopmentRequests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  //       allRepairRequests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  //       */
 
-        //  Update State & Save to LocalStorage
-        setDevelopmentRequests(allDevelopmentRequests)
-        setRepairRequests(allRepairRequests)
-        //  localStorage.setItem("developmentRequests", JSON.stringify(allDevelopmentRequests));
-        //  localStorage.setItem("repairRequests", JSON.stringify(allRepairRequests));
-      } catch (error) {
-        console.error('Error fetching requests:', error)
+  //       //  Update State & Save to LocalStorage
+  //       setDevelopmentRequests(allDevelopmentRequests)
+  //       setRepairRequests(allRepairRequests)
+  //       //  localStorage.setItem("developmentRequests", JSON.stringify(allDevelopmentRequests));
+  //       //  localStorage.setItem("repairRequests", JSON.stringify(allRepairRequests));
+  //     } catch (error) {
+  //       console.error('Error fetching requests:', error)
+  //     }
+  //     setLoading(false)
+  //   }
+
+  //   fetchRequests()
+  // }, [])
+
+ 
+
+useEffect(() => {
+  const fetchRequests = async () => {
+    setLoading(true);
+    const realtimeDb = getDatabase();
+    try {
+      // 1. Get all users from Firestore
+      const usersSnapshot = await getDocs(collection(db, 'Users'));
+      let allDevelopmentRequests = [];
+      let allRepairRequests = [];
+
+      for (const userDoc of usersSnapshot.docs) {
+        const userId = userDoc.id;
+        const userData = userDoc.data();
+
+        const userEmail = userData.email || 'Unknown Email';
+        const firstName = userData.firstName || 'Unknown';
+        const lastName = userData.lastName || 'Unknown';
+
+        // 2. Fetch Development Requests from Realtime DB
+        const devRef = ref(realtimeDb, `Users/${userId}/RequestsDevelopment`);
+        const devSnap = await get(devRef);
+        if (devSnap.exists()) {
+          const devData = devSnap.val();
+          Object.keys(devData).forEach((reqId) => {
+            const req = devData[reqId];
+            allDevelopmentRequests.push({
+              id: reqId,
+              userId,
+              userEmail,
+              userFullName: `${firstName} ${lastName}`,
+              status: req.status || 'pending',
+              rawTimestamp: req.timestamp ? new Date(req.timestamp).getTime() : 0,
+              timestamp: req.timestamp ? new Date(req.timestamp).toLocaleString() : 'Unknown',
+              fullname: req.personalInfo?.fullname || 'Unknown',
+              fullnameInArabic: req.personalInfo?.fullnameInArabic || 'Unknown',
+              dateOfBirth: req.personalInfo?.dateOfBirth || 'Unknown',
+              placeOfBirth: req.personalInfo?.placeOfBirth || 'Unknown',
+              nationalId: req.personalInfo?.nationalId || 'Unknown',
+              phoneNumber: req.personalInfo?.phoneNumber || 'Unknown',
+              statuss: req.academicInfo?.status || 'Unknown',
+              institution: req.academicInfo?.institution || 'Unknown',
+              registrationNumber: req.academicInfo?.registrationNumber || 'Unknown',
+              faculty: req.academicInfo?.faculty || 'Unknown',
+              department: req.academicInfo?.department || 'Unknown',
+              fieldOfStudy: req.academicInfo?.fieldOfStudy || 'Unknown',
+              specialty: req.academicInfo?.specialty || 'Unknown',
+              companyName: req.academicInfo?.companyName || 'Unknown',
+              businessType: req.academicInfo?.businessType || 'Unknown',
+              companyAddress: req.academicInfo?.companyAddress || 'Unknown',
+              otherDetail: req.academicInfo?.otherDetail || 'Unknown',
+              projectDetails: req.projectDetails || {},
+              projectName: req.projectDetails?.projectName || 'Unknown',
+              projectDescription: req.projectDetails?.projectDescription || 'Unknown',
+              technologiesUsed: req.projectDetails?.technologiesUsed || 'Unknown',
+              startDate: req.projectDetails?.startDate || 'Unknown',
+              endDate: req.projectDetails?.endDate || 'Unknown',
+              type: 'development'
+            });
+          });
+        }
+
+        // 3. Fetch Repair Requests from Realtime DB
+        const repairRef = ref(realtimeDb, `Users/${userId}/requestsRepair`);
+        const repairSnap = await get(repairRef);
+        if (repairSnap.exists()) {
+          const repairData = repairSnap.val();
+          Object.keys(repairData).forEach((reqId) => {
+            const req = repairData[reqId];
+            allRepairRequests.push({
+              id: reqId,
+              userId,
+              userEmail,
+              userFullName: `${firstName} ${lastName}`,
+              status: req.status || 'pending',
+              rawTimestamp: req.timestamp ? new Date(req.timestamp).getTime() : 0,
+              timestamp: req.timestamp ? new Date(req.timestamp).toLocaleString() : 'Unknown',
+              fullname: req.personalInfoRepair?.fullname || 'Unknown',
+              fullnameInArabic: req.personalInfoRepair?.fullnameInArabic || 'Unknown',
+              dateOfBirth: req.personalInfoRepair?.dateOfBirth || 'Unknown',
+              placeOfBirth: req.personalInfoRepair?.placeOfBirth || 'Unknown',
+              nationalId: req.personalInfoRepair?.nationalId || 'Unknown',
+              phoneNumber: req.personalInfoRepair?.phoneNumber || 'Unknown',
+              companyName: req.personalInfoRepair?.companyName || 'Unknown',
+              companyAddress: req.personalInfoRepair?.companyAddress || 'Unknown',
+              deviceDetails: req.deviceDetails || {},
+              deviceType: req.deviceDetails?.deviceType || 'Unknown',
+              brand: req.deviceDetails?.brand || 'Unknown',
+              modelNumber: req.deviceDetails?.modelNumber || 'Unknown',
+              serialNumber: req.deviceDetails?.serialNumber || 'Unknown',
+              purchaseDate: req.deviceDetails?.purchaseDate || 'Unknown',
+              warrantyStatus: req.deviceDetails?.status || 'Unknown',
+              damageTitle: req.issueDescription?.damageTitle || 'Unknown',
+              damageDescription: req.issueDescription?.damageDescription || 'Unknown',
+              type: 'repair'
+            });
+          });
+        }
       }
-      setLoading(false)
+
+      // Sort and update state
+      allDevelopmentRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
+      allRepairRequests.sort((a, b) => b.rawTimestamp - a.rawTimestamp);
+
+      setDevelopmentRequests(allDevelopmentRequests);
+      setRepairRequests(allRepairRequests);
+    } catch (error) {
+      console.error('Error fetching users or requests:', error);
     }
+    setLoading(false);
+  };
 
-    fetchRequests()
-  }, [])
-
-  //notif
+  fetchRequests();
+}, []);
+ //notif
+  
   const sendNotification = async (
     userId,
     requestId,
@@ -208,11 +324,11 @@ function AdminRequests() {
     const notificationRef = ref(db, `Users/${userId}/Notifications`)
     const newNotificationRef = push(notificationRef)
     await set(newNotificationRef, {
-      userId, // ✅ Store user ID
-      requestId, // ✅ Store request ID
+      userId, // Store user ID
+      requestId, //  Store request ID
       requestType,
       message,
-      type, // ✅ Store user ID
+      type, //  Store user ID
       timestamp: Date.now(),
       read: false,
     })

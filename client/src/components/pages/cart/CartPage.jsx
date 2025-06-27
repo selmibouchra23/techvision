@@ -9,11 +9,12 @@ import BuyNowModal from '../../buyNowModal/BuyNowModal';
 import { Navigate } from 'react-router-dom';
 import { addDoc, collection, Timestamp, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CartPage = () => {
+     const navigate = useNavigate();
 
     const cartItems = useSelector((state) => state.cart.items)  || [];
     const dispatch = useDispatch();
@@ -89,6 +90,8 @@ const CartPage = () => {
               }
           )
       });
+      console.log("Cart Total:", cartTotal); // This should print a valid number
+
 //Notif
 
 const sendNotificationToAdmins = async (userId, userFullName, orderId) => {
@@ -350,13 +353,37 @@ const sendNotificationToAdmins = async (userId, userFullName, orderId) => {
                     </dl>
                     <div className="px-2 pb-4 font-medium text-green-700">
                         <div className="flex gap-4 mb-6">
-                        {userData
+                       {/* {userData
                                             ? <BuyNowModal
                                                 addressInfo={addressInfo}
                                                 setAddressInfo={setAddressInfo}
                                                 buyNowFunction={buyNowFunction}
                                             /> : <Navigate to={'/Log-in'}/>
-                                        }
+                                        }*/}
+                                        {userData ? (
+                                            
+  <button
+  
+    onClick={() => {
+        console.log("Cart Total:", cartTotal); // This should print a valid number
+        localStorage.setItem('cartTotal', cartTotal);
+        navigate('/PaymentPage2', {
+        state : {
+            price: cartTotal
+        }}
+    )
+}
+}
+    className="w-full px-4 py-3 text-center text-blue-900 bg-blue-100 border border-blue-600  
+        hover:bg-blue-200 hover:text-blue-800 active:bg-blue-600 active:text-gray-100 
+        rounded-xl transition duration-300"
+  >
+    Rent now
+  </button>
+) : (
+  <Navigate to="/Log-in" />
+)}
+
                         </div>
                     </div>
                 </div>

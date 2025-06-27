@@ -11,7 +11,7 @@ import { IconButton, IconInput } from '../../IconComponents';
 //import LoginIlu from '../../img/login-sign-up-illustration1.png';
 
 import LoginIlu from '../../img/100.jpg';
-
+import './../../Navbar.css'
 
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
@@ -248,7 +248,9 @@ export default function LogIn() {
 
           <form onSubmit={handleRegister} className='form-section w-full h-full lg:w-1/2 px-8 lg:px-24 py-16 order-2 lg:order-1'>
             <div className='logo cursor-pointer text-2xl flex items-center'>
-              TchVision <i className="fab fa-slack text-gray-700 text-2xl" />
+              TchVision
+               <img src="/logo1.png" alt="TechVision Logo" className="navbar-logo-img" />
+              {/* <i className="fab fa-slack text-gray-700 text-2xl" /> */}
             </div>
             <h1 className='text-3xl font-semibold mt-6 opacity-90'>Log in to your Account</h1>
             <p className='text-blac opacity-60 mt-3'>Welcome back! Select method to log in:</p>
