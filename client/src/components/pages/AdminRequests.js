@@ -235,7 +235,7 @@ useEffect(() => {
               fullnameInArabic: req.personalInfo?.fullnameInArabic || 'Unknown',
               dateOfBirth: req.personalInfo?.dateOfBirth || 'Unknown',
               placeOfBirth: req.personalInfo?.placeOfBirth || 'Unknown',
-              nationalId: req.personalInfo?.nationalId || 'Unknown',
+             // nationalId: req.personalInfo?.nationalId || 'Unknown',
               phoneNumber: req.personalInfo?.phoneNumber || 'Unknown',
               statuss: req.academicInfo?.status || 'Unknown',
               institution: req.academicInfo?.institution || 'Unknown',
@@ -250,6 +250,7 @@ useEffect(() => {
               otherDetail: req.academicInfo?.otherDetail || 'Unknown',
               projectDetails: req.projectDetails || {},
               projectName: req.projectDetails?.projectName || 'Unknown',
+              projectype: req.academicInfo?.status || 'Unknown',
               projectDescription: req.projectDetails?.projectDescription || 'Unknown',
               technologiesUsed: req.projectDetails?.technologiesUsed || 'Unknown',
               startDate: req.projectDetails?.startDate || 'Unknown',
@@ -278,7 +279,7 @@ useEffect(() => {
               fullnameInArabic: req.personalInfoRepair?.fullnameInArabic || 'Unknown',
               dateOfBirth: req.personalInfoRepair?.dateOfBirth || 'Unknown',
               placeOfBirth: req.personalInfoRepair?.placeOfBirth || 'Unknown',
-              nationalId: req.personalInfoRepair?.nationalId || 'Unknown',
+            //  nationalId: req.personalInfoRepair?.nationalId || 'Unknown',
               phoneNumber: req.personalInfoRepair?.phoneNumber || 'Unknown',
               companyName: req.personalInfoRepair?.companyName || 'Unknown',
               companyAddress: req.personalInfoRepair?.companyAddress || 'Unknown',
@@ -818,10 +819,10 @@ useEffect(() => {
                             <b>Place of Birth:</b>{' '}
                             {selectedRequest.placeOfBirth || 'Unknown'}
                           </Text>
-                          <Text>
+                         {/* <Text>
                             <b>National ID:</b>{' '}
                             {selectedRequest.nationalId || 'Unknown'}
-                          </Text>
+                          </Text>*/}
                           <Text>
                             <b>Phone Number:</b>{' '}
                             {selectedRequest.phoneNumber || 'Unknown'}
@@ -939,6 +940,11 @@ useEffect(() => {
                             <b>Project Name:</b>{' '}
                             {selectedRequest.projectName || 'Unnamed Project'}
                           </Text>
+                           <Text>
+                            <b>Project Type:</b>{' '}
+                            {selectedRequest.projectype || 'Unnamed Project'}
+                          </Text>
+          
                           <Text>
                             <b>Project Description:</b>{' '}
                             {selectedRequest.projectDescription ||
@@ -994,10 +1000,10 @@ useEffect(() => {
                             <b>Place of Birth:</b>{' '}
                             {selectedRequest.placeOfBirth || 'Unknown'}
                           </Text>
-                          <Text>
+                        {/*}  <Text>
                             <b>National ID:</b>{' '}
                             {selectedRequest.nationalId || 'Unknown'}
-                          </Text>
+                          </Text>*/}
                           <Text>
                             <b>Phone Number:</b>{' '}
                             {selectedRequest.phoneNumber || 'Unknown'}

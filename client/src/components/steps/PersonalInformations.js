@@ -101,7 +101,7 @@ export default function PersonalInformations() {
       </div>
 
       {/* National Identification Number Field */}
-      <div className="w-full mx-2 flex-1">
+      {/*<div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
           National Identification Number
           <span
@@ -122,7 +122,7 @@ export default function PersonalInformations() {
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />
         </div>
-      </div>
+      </div>*/}
 
       {/* Phone Number Field */}
       <div className="w-full mx-2 flex-1">

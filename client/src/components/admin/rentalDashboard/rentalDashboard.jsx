@@ -1,14 +1,14 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css'; // تأكد من استيراد أنماط التبويبات
+import 'react-tabs/style/react-tabs.css'; 
 import ProductDetail from './ProductDetail';
 import OrderDetail from './OrderDetail';
-import UserDetail from './UserDetail';
+import CancelledOrders from './CancelledOrders';
 import { useContext } from 'react';
 import myContext from "../../../context/myContext";
 
 const RentalDashboard = () => {
     const context = useContext(myContext);
-    const {getAllProduct, getAllOrder, getAllUser} = context;
+    const {getAllProduct, getAllOrder, getCancelledOrders} = context;
     //onsole.log(getAllProduct.length)
     return (
         <div className="flex flex-col items-center px-5 mt-5">
@@ -104,8 +104,8 @@ const RentalDashboard = () => {
                                         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                     </svg>
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-blue-400">{getAllUser.length}</h2>
-                                <p className="text-blue-500 font-bold">Total Users</p>
+                                <h2 className="title-font font-medium text-3xl text-blue-400">{getCancelledOrders.length}</h2>
+                                <p className="text-blue-500 font-bold">Cancelled orders</p>
                             </div>
                         </Tab>
                     </TabList>
@@ -118,7 +118,7 @@ const RentalDashboard = () => {
                             <OrderDetail/>
                         </TabPanel>
                         <TabPanel>
-                            <UserDetail/>
+                            <CancelledOrders/>
                         </TabPanel>
                 </Tabs>
             </div>

@@ -3,6 +3,7 @@ import { StepperContext } from '../contexts/StepperContextApp'
 import { useNavigate } from 'react-router-dom'
 import { addDoc, collection } from 'firebase/firestore'
 //import { auth, db } from "../firebaseConfig"; // Make sure this path is correct
+import { FaChevronDown } from 'react-icons/fa' 
 
 export default function ProjectDetails() {
   const { userData, setUserData } = useContext(StepperContext)
@@ -24,6 +25,20 @@ export default function ProjectDetails() {
       projectDetails: {
         ...projectDetails,
         [name]: value, // Store project info under "projectDetails"
+      },
+    })
+  }
+
+   // Handle changes in select dropdown
+  const handleStatusChange = e => {
+    const selectedStatus = e.target.value
+    setStatus(selectedStatus)
+
+    setUserData({
+      ...userData,
+      projectDetails: {
+        ...projectDetails,
+        status: selectedStatus, // Store status inside academicInfo
       },
     })
   }
@@ -50,6 +65,41 @@ export default function ProjectDetails() {
           className="p-1 px-2 appearance-none outline-none w-full text-gray-800 border border-gray-200 rounded"
         />
       </div>
+            {/* Status Selection */}
+            <div className="w-full mx-2 flex-1">
+              <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
+                Project type
+                <span
+                  // hadi equired fields
+                  className="text-red-600 text-xl"
+                >
+                  {' '}
+                  *
+                </span>
+              </div>
+              <div className="bg-white my-2 p-1 flex border border-gray-200 rounded relative">
+                <select
+                  /* onChange={(e) => {
+                    setStatus(e.target.value);
+                    setUserData({ ...userData, status: e.target.value });
+                  }}*/
+                  onChange={handleStatusChange}
+                  value={status}
+                  name="status"
+                  className="p-1 px-2 appearance-none outline-none w-full text-gray-800 bg-transparent"
+                >
+                  <option value="">Select Type</option>
+                  <option value="student">
+                    Application
+                  </option>
+                  <option value="businessOwner">Web Site</option>
+                  <option value="other">Other</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <FaChevronDown className="h-4 w-4" />
+                </div>
+              </div>
+            </div>
 
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
@@ -75,13 +125,13 @@ export default function ProjectDetails() {
       <div className="w-full mx-2 flex-1">
         <div className="font-bold h-6 mt-3 text-gray-500 text-xs leading-8 uppercase">
           Technologies Used
-          <span
+         {/* <span
             // hadi equired fields
             className="text-red-600 text-xl"
           >
             {' '}
             *
-          </span>
+          </span>*/}
         </div>
         <input
           onChange={handleChange}

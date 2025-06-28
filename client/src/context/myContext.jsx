@@ -89,6 +89,13 @@ export const MyProvider = ({ children }) => {
             setLoading(false)
         }
     }
+const toggleOrderStatus = async (orderId, currentStatus) => {
+    const orderRef = doc(db, "order", orderId); 
+    const newStatus = currentStatus === "confirmed" ? "not confirmed" : "confirmed";
+    await updateDoc(orderRef, { status: newStatus });
+    toast.success("Order status updated");
+    getAllOrderFunction(); 
+};
 
 /*const orderDelete = async (orderId, item) => {
     setLoading(true);
@@ -105,6 +112,39 @@ export const MyProvider = ({ children }) => {
     }
     setLoading(false);
 };*/
+
+
+
+// Cancelled Orders State
+const [getCancelledOrders, setGetCancelledOrders] = useState([]);
+/**========================================================================
+ *                     Get All Cancelled Orders Function
+ *========================================================================**/
+const getCancelledOrdersFunction = async () => {
+    setLoading(true);
+    try {
+        const q = query(
+            collection(db, "Cancelled orders"),
+           // orderBy('time') 
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+            let cancelledArray = [];
+            QuerySnapshot.forEach((doc) => {
+                cancelledArray.push({ ...doc.data(), id: doc.id });
+            });
+            setGetCancelledOrders(cancelledArray);
+            setLoading(false);
+        });
+        return () => data;
+    } catch (error) {
+        console.log(error);
+        setLoading(false);
+    }
+}
+
+
+
+
 
 // user State 
 const [getAllUser, setGetAllUser] = useState([]);
@@ -139,15 +179,17 @@ const getAllUserFunction = async () => {
 
     useEffect(() => {
         getAllProductFunction();
-        getAllOrderFunction();
+        getAllOrderFunction();      
         getAllUserFunction();
+        getCancelledOrdersFunction(); 
     }, []);
 
     return (
-        <myContext.Provider value={{ loading, setLoading, getAllProduct, getAllProductFunction, getAllOrder, getAllOrderFunction, orderDelete,  getAllUser }}>{/*getAllProductFunction */}
+        <myContext.Provider value={{ loading, setLoading, getAllProduct, getAllProductFunction, getAllOrder, getAllOrderFunction, orderDelete, toggleOrderStatus,  getAllUser, getCancelledOrders, getCancelledOrdersFunction }}>{/*getAllProductFunction */}
             {children}
         </myContext.Provider>
     );
 };
 
 export default myContext;
+

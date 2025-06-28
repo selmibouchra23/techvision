@@ -54,7 +54,7 @@ function RepairServiceRequest() {
         if (
           !userData.personalInfoRepair.fullname ||
           !userData.personalInfoRepair.fullnameInArabic ||
-          !userData.personalInfoRepair.nationalId ||
+         // !userData.personalInfoRepair.nationalId ||
           !userData.personalInfoRepair.phoneNumber ||
           !userData.personalInfoRepair.companyName ||
           !userData.personalInfoRepair.companyAddress

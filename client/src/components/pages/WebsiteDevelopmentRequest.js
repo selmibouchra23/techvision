@@ -55,7 +55,7 @@ function WebsiteDevelopmentRequest() {
         if (
           !userData.personalInfo.fullname ||
           !userData.personalInfo.fullnameInArabic ||
-          !userData.personalInfo.nationalId ||
+         // !userData.personalInfo.nationalId ||
           !userData.personalInfo.phoneNumber
         ) {
           toast.error(
@@ -145,8 +145,8 @@ function WebsiteDevelopmentRequest() {
         // Validate Step 3
         if (
           !userData.projectDetails.projectName ||
-          !userData.projectDetails.projectDescription ||
-          !userData.projectDetails.technologiesUsed
+          !userData.projectDetails.projectDescription 
+         // || !userData.projectDetails.technologiesUsed
         ) {
           toast.error(
             '⚠️ Please fill in all required fields before proceeding.',
