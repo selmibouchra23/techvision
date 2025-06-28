@@ -16,7 +16,7 @@ import {
   ModalBody,
   useDisclosure,
   Badge,
-  HStack,
+  HStack, 
   Grid,
   GridItem,
   Heading,
@@ -279,11 +279,11 @@ function MyHistory() {
                           {selectedRequest.personalInfo?.placeOfBirth ||
                             'Unknown'}
                         </Text>
-                        <Text>
+                       {/* <Text>
                           <b>National ID:</b>{' '}
                           {selectedRequest.personalInfo?.nationalId ||
                             'Unknown'}
-                        </Text>
+                        </Text>*/}
                         <Text>
                           <b>Phone Number:</b>{' '}
                           {selectedRequest.personalInfo?.phoneNumber ||
@@ -388,6 +388,10 @@ function MyHistory() {
                           {selectedRequest.projectDetails?.projectName ||
                             'Unnamed Project'}
                         </Text>
+                        <Text>
+                            <b>Project Type:</b>{' '}
+                            {selectedRequest.projectDetails?.status || 'Unknown'}
+                          </Text>
                         <Text>
                           <b>Project Description:</b>{' '}
                           {selectedRequest.projectDetails?.projectDescription ||

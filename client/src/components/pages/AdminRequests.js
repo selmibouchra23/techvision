@@ -250,7 +250,7 @@ useEffect(() => {
               otherDetail: req.academicInfo?.otherDetail || 'Unknown',
               projectDetails: req.projectDetails || {},
               projectName: req.projectDetails?.projectName || 'Unknown',
-              projectype: req.academicInfo?.status || 'Unknown',
+              projectype: req.projectDetails?.status || 'Unknown',
               projectDescription: req.projectDetails?.projectDescription || 'Unknown',
               technologiesUsed: req.projectDetails?.technologiesUsed || 'Unknown',
               startDate: req.projectDetails?.startDate || 'Unknown',

@@ -27,7 +27,7 @@ export default function ProjectDetails() {
         [name]: value, // Store project info under "projectDetails"
       },
     })
-  }
+  } 
 
    // Handle changes in select dropdown
   const handleStatusChange = e => {
