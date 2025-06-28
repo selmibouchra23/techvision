@@ -11,7 +11,7 @@ import {
 } from "react-icons/fi";
 
 const Sidebar = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     // CartItems
     const cartItems = useSelector((state) => state.cart.items)  || [];
 

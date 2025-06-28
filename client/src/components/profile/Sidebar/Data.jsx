@@ -44,13 +44,13 @@ function Data() {
   }, [])
 
   const list =[
-        { id: 1, name: 'Completed projects', value: 1, color: 'green' },
+       {/* { id: 1, name: 'Completed projects', value: 1, color: 'green' },
         {
           id: 2,
           name: 'Projects under construction',
           value: 2,
           color: 'yellow',
-        },
+        },*/},
         {
           id: 3,
           name: 'Projects you requested',

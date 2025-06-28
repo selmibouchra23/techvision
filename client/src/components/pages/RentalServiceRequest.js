@@ -11,6 +11,7 @@ function RentalServiceRequest() {
     return (
         <div className="flex h-screen">
             <Sidebar />
+            
             <div className="flex flex-col flex-1 p-6">
                 <div className="flex items-center justify-between mb-6">
                     <SearchBar />
