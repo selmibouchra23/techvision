@@ -45,7 +45,7 @@ function WebsiteDevelopmentRequest() {
       case 4:
         return <Complete />
     }
-  }
+  } 
 
 
   const handleClick = direction => {

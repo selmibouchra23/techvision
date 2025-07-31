@@ -58,7 +58,7 @@ import Analytics from './components/admin/Analytics/Analytics';
 import AnalyticsPage from './components/admin/Analytics/AnalyticsPage'
 import AdminDashboard from './components/admin/dash/AdminDashboard';
 import AdminDashboardPage from './components/admin/dash/AdminDashboardPage'
-
+import Final from './components/steps/Complete';
 // import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -199,6 +199,7 @@ function App() {
         <Route path="/category/:categoryname" element={<CategoryPage />} />
 
         <Route path="PaymentPage2" element={<PaymentPage2 />} />
+        <Route path="/Final" element={<Final />} />
 
 
  

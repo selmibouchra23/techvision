@@ -59,6 +59,8 @@ function MyHistory() {
               projectName:
                 data.projectDetails?.projectName || 'Unnamed Project',
               status: data.status || 'pending', // Get status field
+              projectype: data.projectDetails?.projectype || 'Unknown',
+
                rawTimestamp: data.timestamp ? new Date(data.timestamp).getTime() : 0,
                
                timestamp: data.timestamp || 'Unknown'
@@ -390,7 +392,7 @@ function MyHistory() {
                         </Text>
                         <Text>
                             <b>Project Type:</b>{' '}
-                            {selectedRequest.projectDetails?.status || 'Unknown'}
+                            {selectedRequest.projectDetails?.projectype || 'Unknown'}
                           </Text>
                         <Text>
                           <b>Project Description:</b>{' '}

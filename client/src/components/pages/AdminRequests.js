@@ -250,11 +250,13 @@ useEffect(() => {
               otherDetail: req.academicInfo?.otherDetail || 'Unknown',
               projectDetails: req.projectDetails || {},
               projectName: req.projectDetails?.projectName || 'Unknown',
-              projectype: req.projectDetails?.status || 'Unknown',
+              projectype: req.projectDetails?.projectype || 'Unknown',
               projectDescription: req.projectDetails?.projectDescription || 'Unknown',
               technologiesUsed: req.projectDetails?.technologiesUsed || 'Unknown',
               startDate: req.projectDetails?.startDate || 'Unknown',
               endDate: req.projectDetails?.endDate || 'Unknown',
+              price: req.projectDetails?.totalPrice || 'Unknown',
+              duration: req.projectDetails?.totalDuration || 'Unknown',
               type: 'development'
             });
           });
@@ -362,7 +364,7 @@ useEffect(() => {
     //type,
     requestType,
   ) => {
-    if (newStatus === 'accepted' && !price) {
+    /*if (newStatus === 'accepted' && !price) {
      // alert('Please enter a price before accepting the request.')
       toast({
         title: "Error",
@@ -372,7 +374,7 @@ useEffect(() => {
         isClosable: true,
       });
       return
-    }
+    }*/
     try {
       // fire
      const requType = requestType === 'development'
@@ -389,7 +391,7 @@ useEffect(() => {
     // );
       await updateDoc(requestDocRef, {
         status: newStatus,
-        price: newStatus === 'accepted' ? price : null,
+      //  price: newStatus === 'accepted' ? price : null,
       });
       //real
       const dbR = getDatabase()
@@ -400,7 +402,7 @@ useEffect(() => {
 
       await update(requestRef, {
         status: newStatus,
-        price: newStatus === 'accepted' ? price : null,
+      //  price: newStatus === 'accepted' ? price : null,
       });
         //  Update UI Instantly (Optimistic UI Update)
     setSelectedRequest((prev) => ({
@@ -431,7 +433,8 @@ useEffect(() => {
         requestId,
         requestType,
         newStatus === 'accepted'
-          ? `Your request has been accepted. Please pay $${price}.`
+          ? `Your request has been accepted. Please check your appointment and further instructions.`
+          // Please pay $${price}.`
           : 'Your request has been rejected.',
         newStatus === 'accepted' ? 'request_accepted' : 'request_rejected',
       )
@@ -443,7 +446,8 @@ useEffect(() => {
         requestId,
         requestType,
         newStatus === 'accepted'
-          ? `Your request has been accepted. Please pay $${price}.`
+          ? `Your request has been accepted.Please check your appointment and further instructions.`
+          // Please pay $${price}.`
           : 'Your request has been rejected.',
         newStatus === 'accepted' ? 'request_accepted' : 'request_rejected',
       )
@@ -554,7 +558,7 @@ useEffect(() => {
                   {item.status === 'pending' && (
                     <>
                       {/*<Input placeholder="Enter price" value={price} onChange={(e) => setPrice(e.target.value)} mt={2} />*/}
-                      {showPriceInput === item.id ? (
+                     {/* {showPriceInput === item.id ? (
                         <>
                           <Input
                             placeholder="Enter price"
@@ -619,8 +623,8 @@ useEffect(() => {
                             Reject
                           </Button>
                         </>
-                      )}
-                      {/* <Button 
+                      )}*/}
+                      <Button 
                       size="xs" 
                       colorScheme="green" 
                       mt={2} ml={2} 
@@ -633,7 +637,7 @@ useEffect(() => {
                       mt={2} ml={2} 
                       onClick={() => updateRequestStatus(item.userId, item.id, "rejected", "development")}>
                         Reject
-                        </Button>*/}
+                        </Button>
                     </>
                   )}
                 </Box>
@@ -692,7 +696,22 @@ useEffect(() => {
                   </Button>
                   {item.status === 'pending' && (
                     <>
-                      {showPriceInput === item.id ? (
+                    <Button 
+                      size="xs" 
+                      colorScheme="green" 
+                      mt={2} ml={2} 
+                      onClick={() =>  updateRequestStatus(item.userId, item.id, "accepted", "development")}>
+                        Accept
+                        </Button>
+                      <Button 
+                      size="xs" 
+                      colorScheme="red" 
+                      mt={2} ml={2} 
+                      onClick={() => updateRequestStatus(item.userId, item.id, "rejected", "development")}>
+                        Reject
+                         </Button>
+
+                     {/* {showPriceInput === item.id ? (
                         <>
                           <Input
                             placeholder="Enter price"
@@ -757,7 +776,7 @@ useEffect(() => {
                             Reject
                           </Button>
                         </>
-                      )}
+                      )}*/}
                       {/*  <Button size="xs" colorScheme="green" mt={2} ml={2} onClick={() => updateRequestStatus(item.userId, item.id, "accepted", "repair")}>Accept</Button>
                       <Button size="xs" colorScheme="red" mt={2} ml={2} onClick={() => updateRequestStatus(item.userId, item.id, "rejected", "repair")}>Reject</Button>*/}
                     </>
@@ -942,19 +961,39 @@ useEffect(() => {
                           </Text>
                            <Text>
                             <b>Project Type:</b>{' '}
-                            {selectedRequest.projectype || 'Unnamed Project'}
+                            {selectedRequest.projectype || 'Unknown'}
                           </Text>
+                            {selectedRequest.projectype === 'app' && (
+                          <Text>
+                              <b>Application:</b>{' '}
+                            </Text>
+                          
+                        )}
+
+                        {selectedRequest.projectype === 'web' && (
+                          
+                            <Text>
+                              <b>Web Site</b>{' '}
+                            </Text>
+                            
+                        )}
+
+                        {selectedRequest.statuss === 'other' && (
+                          <Text mt={2}>
+                            <b>Other Details:</b>{' '}
+                          </Text>
+                        )}
           
                           <Text>
                             <b>Project Description:</b>{' '}
                             {selectedRequest.projectDescription ||
                               'No Description'}
                           </Text>
-                          <Text>
+                         {/* <Text>
                             <b>Technologies Used:</b>{' '}
                             {selectedRequest.technologiesUsed ||
                               'Not Specified'}
-                          </Text>
+                          </Text>*/}
                           <Text>
                             <b>Start Date:</b>{' '}
                             {selectedRequest.startDate || 'Unknown'}
@@ -962,6 +1001,16 @@ useEffect(() => {
                           <Text>
                             <b>End Date:</b>{' '}
                             {selectedRequest.endDate || 'Unknown'}
+                          </Text>
+                           <Text>
+                            <b>Estimated Price:</b>{' '}
+                            {selectedRequest.price ||
+                              'No Description'}
+                          </Text>
+                           <Text>
+                            <b>Estimated Duration:</b>{' '}
+                            {selectedRequest.duration ||
+                              'No Description'}
                           </Text>
                         </VStack>
                       </Box>
@@ -1106,7 +1155,7 @@ useEffect(() => {
                 {/* Show Accept/Reject Buttons ONLY IF Status is Pending */}
                 {selectedRequest.status === 'pending' && (
                   <Box mt={4}>
-                    {showPriceInput === selectedRequest.id ? (
+                   {/* {showPriceInput === selectedRequest.id ? (
                       <>
                         <Input
                           placeholder="Enter price"
@@ -1164,9 +1213,10 @@ useEffect(() => {
                           Reject
                         </Button>
                       </>
-                    )}
+                    )
+                 }*/}
 
-                    {/*  <Button 
+                      <Button 
             colorScheme="green" 
             mr={2} 
             onClick={() => {
@@ -1185,7 +1235,7 @@ useEffect(() => {
             }}
           >
             Reject
-          </Button>*/}
+          </Button>
                   </Box>
                 )}
               </>

@@ -56,7 +56,9 @@ function AdminNotifications() {
          // playNotificationSound()
           // showSystemNotification(latestNotification)
         }
-      setNotifications(newNotifications);
+     setNotifications(newNotifications);
+      //const filteredNotifications = newNotifications.filter(n => n.requestType !== 'rental');
+     // setNotifications(filteredNotifications)
       setLoading(false);
     });
 
@@ -71,6 +73,7 @@ function AdminNotifications() {
 
      //  When an admin clicks a notification, fetch full request details
   const handleNotificationClick = async notification => {
+    
     console.log('Notification Data:', notification)
     // Check if notification contains required fields
     if (

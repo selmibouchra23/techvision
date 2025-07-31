@@ -10,7 +10,7 @@ export default function AcademicProfessionalSituation() {
   /* const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-  };*/
+  };*/ 
 
   //const academicInfo = userData.academicInfo || {};
 

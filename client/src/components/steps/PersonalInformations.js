@@ -253,7 +253,7 @@ export default function PersonalInformations() {
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />
         </div>
-      </div>
+      </div> 
 
 
 

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import BuyNowModal from '../../buyNowModal/BuyNowModal';
 import { Navigate } from 'react-router-dom';
-import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { addDoc, collection,getDocs, Timestamp } from 'firebase/firestore';
 import { db } from '../../firebase';
 
               
@@ -124,7 +124,43 @@ const CartPage = () => {
               }
           )
       });
-      //Buy Now Function 
+
+       const sendNotificationToAdmins = async (userId, userFullName, orderId) => {
+  try {
+    const adminsRef = collection(db, 'Admins');
+    const adminsSnapshot = await getDocs(adminsRef);
+
+    if (!adminsSnapshot.empty) {
+      adminsSnapshot.forEach(async (adminDoc) => {
+        const adminId = adminDoc.id;
+
+        const adminNotificationsRef = collection(
+          db,
+          'Admins',
+          adminId,
+          'Notifications'
+        );
+
+        await addDoc(adminNotificationsRef, {
+          message: `New rental order from user ${userFullName}`,
+          type: 'new_rental_order',
+          userId: userId,
+          requestId: orderId, // you can call it orderId here
+          requestType: 'rental',
+          read: false,
+          timestamp: new Date().toISOString(),
+        });
+      });
+
+      console.log('Notification sent to all admins in Firestore.');
+    } else {
+      console.log('No admins found in Firestore.');
+    }
+  } catch (error) {
+    console.error('Error sending notifications to admins:', error);
+  }
+};
+   //   Buy Now Function 
   
       const buyNowFunction = () => {
          const today = new Date();
