@@ -15,7 +15,7 @@ export default function Final() {
   const [calendarMap, setCalendarMap] = useState({})
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
-  const appointmentsPerSlot = 1
+  const appointmentsPerSlot = 3
   const timeSlots = [ '10:00', '13:00', '14:00']
 
   const getUnavailableDates = async () => {
