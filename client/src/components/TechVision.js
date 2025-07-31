@@ -3,7 +3,7 @@ import '../App.css';
 import { Button } from './Button';
 import './TechVision.css';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth } from './firebase';
 import { toast } from 'react-toastify';
 
 function TechVision() {

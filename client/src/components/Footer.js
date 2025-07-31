@@ -11,10 +11,11 @@ function Footer() {
         <div class='social-media-wrap'>
           <div class='footer-logo'>
             <Link to='/' className='social-logo'>
-            TchVision   <i className="fab fa-slack"/> 
+            TechServices.DZ
+   <i className="fab fa-slack"/> 
             </Link>
           </div>
-          <small class='website-rights'>TchVision © 2025</small>
+          <small class='website-rights'>TechServices.DZ © 2025</small>
           <div class='social-icons'>
             <Link
               class='social-icon-link facebook'

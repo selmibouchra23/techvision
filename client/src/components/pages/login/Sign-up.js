@@ -181,8 +181,8 @@ export default function SignUp() {
         <form onSubmit={handleRegister} className='form-section w-full lg:w-1/2 px-8 lg:px-24 py-16 order-2 lg:order-1'>
 
           <div className='logo cursor-pointer text-2xl flex items-center'>
-            TchVision
-             <img src="/logo1.png" alt="TechVision Logo" className="navbar-logo-img" />
+            TechServices.DZ
+             <img src="/logo1.png" alt="TechServices.DZ Logo" className="navbar-logo-img" />
             {/* <i className="fab fa-slack text-gray-700 text-2xl" /> */}
           </div>
 
