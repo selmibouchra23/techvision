@@ -3,6 +3,7 @@ import './Footer.css';
 //import { Button } from './Button';
 import { Link } from 'react-router-dom';
 
+import './Navbar.css';
 function Footer() {
   return (
     <div className='footer-container'>
@@ -10,9 +11,10 @@ function Footer() {
       <section class='social-media'>
         <div class='social-media-wrap'>
           <div class='footer-logo'>
-            <Link to='/' className='social-logo'>
+            <Link to='/' className='navbar-logo'>
             TechServices.DZ
-   <i className="fab fa-slack"/> 
+            <img src="/logo22.png" alt="TechServices.DZ Logo" className="navbar-logo-img" />
+            
             </Link>
           </div>
           <small class='website-rights'>TechServices.DZ © 2025</small>
